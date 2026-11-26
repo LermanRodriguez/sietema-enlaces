@@ -97,7 +97,7 @@ export const documentos: Documento[] = [
 export const desarrolladores: Desarrollador[] = [
   { id: 'lerman',  nombre: 'Lerman Maestre',  rol: 'Desarrollador',  iniciales: 'LM', foto: 'fotos/lerman.jpg' },
   { id: 'miguel',  nombre: 'Miguel Lima',     rol: 'Desarrollador',  iniciales: 'ML', foto: 'fotos/miguel.jpg' },
-  { id: 'josue',   nombre: 'Josué Herrera',   rol: 'Desarrollador',  iniciales: 'JH' },
+  { id: 'josue',   nombre: 'Josué Herrera',   rol: 'Desarrollador',  iniciales: 'JH', foto: 'fotos/josue.jpg' },
   { id: 'jose',    nombre: 'José Araujo',     rol: 'Desarrollador',  iniciales: 'JA', foto: 'fotos/jose.jpg' },
   { id: 'wilman',  nombre: 'Wilman Vega',     rol: 'Docente',        iniciales: 'WV' },
 ]
