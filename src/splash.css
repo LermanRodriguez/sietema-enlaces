@@ -1,0 +1,340 @@
+/* ═══ Splash Screen ═══ */
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: #0d0a08;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  padding: 24px;
+  animation: splash-aparecer .4s ease both;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.splash--saliendo {
+  animation: splash-salir .5s ease forwards;
+}
+
+@keyframes splash-aparecer {
+  from { opacity: 0; }
+}
+
+@keyframes splash-salir {
+  to { opacity: 0; pointer-events: none; }
+}
+
+/* Escena con la tarjeta */
+.splash-escena {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* Contenedor que flota */
+.splash-float {
+  animation: flotar-card 4.5s ease-in-out 0.9s infinite;
+}
+
+@keyframes flotar-card {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+/* La tarjeta física */
+.splash-tarjeta {
+  width: min(300px, 80vw);
+  aspect-ratio: 1.586;
+  border-radius: clamp(16px, 5vw, 22px);
+  background:
+    radial-gradient(ellipse 70% 60% at 15% 75%, #f2a33a55 0%, transparent 55%),
+    radial-gradient(ellipse 50% 50% at 85% 15%, #ffffff18 0%, transparent 50%),
+    linear-gradient(135deg, #f07845 0%, #e45736 48%, #c03a1a 100%);
+  box-shadow:
+    0 28px 56px #b83a1c66,
+    0 8px 20px #b83a1c33,
+    inset 0 1px 0 #ffffff44,
+    inset 0 -1px 0 #00000022;
+  color: #fff8ef;
+  padding: 7% 8%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transform: rotate(-6deg);
+  animation: card-entrar .65s cubic-bezier(.2, .9, .3, 1.3) .1s both;
+  isolation: isolate;
+}
+
+@keyframes card-entrar {
+  from {
+    opacity: 0;
+    transform: rotate(-6deg) scale(.6) translateY(20px);
+  }
+}
+
+/* Brillo diagonal de cartulina */
+.splash-tarjeta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    125deg,
+    rgba(255,255,255,.18) 0%,
+    rgba(255,255,255,.04) 35%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Cabecera de la tarjeta */
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.card-logo {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.card-logo-icono {
+  width: clamp(22px, 7%, 26px);
+  height: clamp(22px, 7%, 26px);
+  display: grid;
+  place-items: center;
+  border-radius: 50% 50% 50% 20%;
+  background: rgba(255,248,239,.92);
+  color: #e45736;
+  font: italic 700 clamp(11px, 3.5vw, 14px) Georgia, serif;
+  flex-shrink: 0;
+}
+
+.card-logo-nombre {
+  font-size: clamp(10px, 3vw, 13px);
+  font-weight: 700;
+  letter-spacing: .5px;
+  color: #fff8ef;
+  opacity: .92;
+}
+
+/* Icono NFC */
+.card-nfc {
+  width: clamp(28px, 9%, 36px);
+  height: clamp(28px, 9%, 36px);
+  border: 1.5px solid rgba(255,248,239,.55);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(9px, 2.8vw, 12px);
+  letter-spacing: -1.5px;
+  color: rgba(255,248,239,.8);
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Ondas NFC */
+.card-nfc::before,
+.card-nfc::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border: 1px solid rgba(255,248,239,.4);
+  border-radius: 50%;
+  opacity: 0;
+  animation: onda-nfc 2.4s ease-out infinite;
+}
+
+.card-nfc::after {
+  animation-delay: 1.1s;
+}
+
+@keyframes onda-nfc {
+  0% { opacity: .6; transform: scale(1); }
+  100% { opacity: 0; transform: scale(2.2); }
+}
+
+/* Chip */
+.card-chip {
+  width: clamp(28px, 11%, 38px);
+  aspect-ratio: 1.4;
+  border-radius: 3px;
+  background:
+    linear-gradient(135deg, #e8c86a 0%, #d4a832 35%, #f2d870 55%, #c89020 100%);
+  box-shadow:
+    inset 0 0 0 1px #c89020aa,
+    inset 2px 2px 0 rgba(255,255,255,.25),
+    0 1px 2px rgba(0,0,0,.3);
+  position: relative;
+  z-index: 2;
+  align-self: flex-start;
+}
+
+/* Pie de la tarjeta */
+.card-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.card-mesa {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.mesa-label {
+  font-size: clamp(7px, 2.2vw, 9px);
+  font-weight: 800;
+  letter-spacing: .15em;
+  opacity: .75;
+  margin-bottom: 2px;
+}
+
+.mesa-num {
+  font-size: clamp(22px, 8vw, 32px);
+  font-weight: 850;
+  letter-spacing: -.03em;
+  line-height: 1;
+}
+
+.card-instruccion {
+  font-size: clamp(7px, 2.3vw, 10px);
+  font-weight: 700;
+  text-align: right;
+  line-height: 1.4;
+  opacity: .85;
+}
+
+/* Sombra debajo de la tarjeta */
+.splash-sombra {
+  width: 55%;
+  height: 10px;
+  margin-top: 10px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0,0,0,.55) 0%, transparent 70%);
+  filter: blur(8px);
+  animation: sombra-sync 4.5s ease-in-out 0.9s infinite;
+}
+
+@keyframes sombra-sync {
+  0%, 100% { transform: scaleX(1); opacity: .7; }
+  50% { transform: scaleX(.8); opacity: .4; }
+}
+
+/* Texto BUEN PROVECHO con typewriter */
+.splash-frase-wrap {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.splash-frase {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  /* cursor rojo que parpadea */
+  border-right: 3px solid #e4572e;
+  padding-right: 3px;
+  font-size: clamp(22px, 6.5vw, 52px);
+  font-weight: 850;
+  line-height: 1.1;
+  letter-spacing: .1em;
+  color: #fff8ef;
+  text-transform: uppercase;
+  /* "BUEN PROVECHO" = 13 caracteres incluyendo el espacio */
+  animation:
+    tipear        1.1s steps(13, end)   0.75s both,
+    cursor-blink  .55s step-end         0.75s 6,
+    cursor-ocultar 0s  linear           3.3s  forwards;
+}
+
+@keyframes tipear {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes cursor-blink {
+  50% { border-color: transparent; }
+}
+
+@keyframes cursor-ocultar {
+  to { border-color: transparent; }
+}
+
+/* Marca debajo */
+.splash-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: brand-entrar .5s ease .6s both;
+}
+
+@keyframes brand-entrar {
+  from { opacity: 0; transform: translateY(8px); }
+}
+
+.splash-brand .logo-icono {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50% 50% 50% 10px;
+  background: #e45736;
+  color: #fff;
+  font: italic 700 16px Georgia, serif;
+  transform: rotate(-8deg);
+  flex-shrink: 0;
+}
+
+.splash-brand-nombre {
+  font: 750 22px/1 Georgia, 'Times New Roman', serif;
+  letter-spacing: -.8px;
+  color: #fff8ef;
+}
+
+.splash-brand-nombre b {
+  color: #e45736;
+  font-weight: 750;
+}
+
+/* Pista para tocar */
+.splash-hint {
+  position: absolute;
+  bottom: max(env(safe-area-inset-bottom), 24px);
+  left: 0; right: 0;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,248,239,.35);
+  font-weight: 600;
+  letter-spacing: .06em;
+  animation: brand-entrar .5s ease 1.2s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash-float,
+  .splash-sombra,
+  .splash-tarjeta,
+  .splash-brand,
+  .splash-frase,
+  .card-nfc::before,
+  .card-nfc::after {
+    animation: none !important;
+  }
+  .splash-tarjeta { transform: rotate(-6deg); opacity: 1; }
+  /* Muestra el texto completo sin animación */
+  .splash-frase { width: 100%; border-color: transparent; }
+}
